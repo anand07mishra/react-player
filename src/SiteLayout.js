@@ -1,4 +1,4 @@
-import { AppstoreAddOutlined, HomeOutlined, LayoutOutlined, PlaySquareOutlined, SubnodeOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { AppstoreAddOutlined, HomeOutlined, LayoutOutlined, PlaySquareOutlined, SubnodeOutlined, VideoCameraOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Input, Layout, Menu, Switch } from 'antd';
 import 'antd/dist/antd.css';
 import React from 'react';
@@ -42,13 +42,22 @@ class SiteLayout extends React.Component {
         this.setState({ collapsed });
     };
 
+    toggle = () => {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    };
+
     render() {
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <BrowserRouter>
-                    <Header className="header">
-                        <div className="logo" />
-                        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+                    <Header className="header" style={{ padding: '0 0' }}>
+                        <Menu theme={this.state.theme} mode="horizontal" defaultSelectedKeys={['1']}>
+                            <Menu.Item key="7">{React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                                className: 'trigger',
+                                onClick: this.toggle,
+                            })}</Menu.Item>
                             <Menu.Item key="1"><NavLink to="/">Home</NavLink></Menu.Item>
                             <Menu.Item key="2"><NavLink to="/NewContent">New Content</NavLink></Menu.Item>
                             <Menu.Item key="3"><NavLink to="/Movies">Movies</NavLink></Menu.Item>
@@ -62,11 +71,10 @@ class SiteLayout extends React.Component {
                                 size="large"
                                 onSearch={(value) => { console.log(value) }}
                             /></Menu.Item>
-
                         </Menu>
                     </Header>
                     <Layout>
-                        <Sider width={200} className="site-layout-background" collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+                        <Sider width={200} className="site-layout-background" collapsedWidth={0} trigger={null} collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                             <Menu
                                 theme={this.state.theme}
                                 onClick={this.handleClick}
