@@ -13,3 +13,9 @@
 [data-theme="dark"] .site-layout .site-layout-background {
   background: #141414;
 }
+
+:root {
+  --amplify-primary-color: #1890FF;
+  --amplify-primary-tint: #108BFE;
+  --amplify-primary-shade: #59AEFE;
+}

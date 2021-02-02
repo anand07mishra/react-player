@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "reactplayerdb85a632": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

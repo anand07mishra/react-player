@@ -1,6 +1,7 @@
-import { AppstoreAddOutlined, HomeOutlined, LayoutOutlined, PlaySquareOutlined, SubnodeOutlined, VideoCameraOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import { AppstoreAddOutlined, HomeOutlined, LayoutOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PlaySquareOutlined, SettingOutlined, SubnodeOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Input, Layout, Menu, Switch } from 'antd';
 import 'antd/dist/antd.css';
+import { Auth } from 'aws-amplify';
 import React from 'react';
 import {
     BrowserRouter, NavLink, Route
@@ -15,6 +16,8 @@ import WatchList from './WatchList';
 const { Search } = Input;
 
 const { Header, Content, Sider } = Layout;
+
+const { SubMenu } = Menu;
 
 
 class SiteLayout extends React.Component {
@@ -71,6 +74,17 @@ class SiteLayout extends React.Component {
                                 size="large"
                                 onSearch={(value) => { console.log(value) }}
                             /></Menu.Item>
+
+                            <SubMenu key="SubMenu" icon={<UserOutlined />}>
+                                <Menu.Item key="setting:1" icon={<SettingOutlined />}>User Preferences</Menu.Item>
+                                <Menu.Item key="setting:2" icon={<LogoutOutlined />} onClick={() => {
+                                    Auth.signOut()
+                                        .catch(err => console.log(err));
+                                    window.location.reload();
+                                }}>
+                                    Signout
+                                </Menu.Item>
+                            </SubMenu>
                         </Menu>
                     </Header>
                     <Layout>
@@ -116,7 +130,7 @@ class SiteLayout extends React.Component {
                         </Layout>
                     </Layout>
                 </BrowserRouter>
-            </Layout>
+            </Layout >
         );
     }
 
