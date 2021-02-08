@@ -56,7 +56,7 @@ class SiteLayout extends React.Component {
             <Layout style={{ minHeight: '100vh' }}>
                 <BrowserRouter>
                     <Header className="header" style={{ padding: '0 0' }}>
-                        <Menu theme={this.state.theme} mode="horizontal" defaultSelectedKeys={['1']}>
+                        <Menu theme={this.state.theme} mode="horizontal" defaultSelectedKeys={['1']} style={{ fontSize: '130%' }}>
                             <Menu.Item key="7">{React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                                 className: 'trigger',
                                 onClick: this.toggle,
@@ -75,9 +75,9 @@ class SiteLayout extends React.Component {
                                 onSearch={(value) => { console.log(value) }}
                             /></Menu.Item>
 
-                            <SubMenu key="SubMenu" icon={<UserOutlined />}>
-                                <Menu.Item key="setting:1" icon={<SettingOutlined />}>User Preferences</Menu.Item>
-                                <Menu.Item key="setting:2" icon={<LogoutOutlined />} onClick={() => {
+                            <SubMenu key="SubMenu" icon={<UserOutlined style={{ fontSize: '130%' }} />}>
+                                <Menu.Item key="setting:1" icon={<SettingOutlined style={{ fontSize: '130%' }} />}>User Preferences</Menu.Item>
+                                <Menu.Item key="setting:2" icon={<LogoutOutlined style={{ fontSize: '130%' }} />} onClick={() => {
                                     Auth.signOut()
                                         .catch(err => console.log(err));
                                     window.location.reload();
@@ -92,7 +92,7 @@ class SiteLayout extends React.Component {
                             <Menu
                                 theme={this.state.theme}
                                 onClick={this.handleClick}
-                                style={{ height: '100%', borderRight: 0 }}
+                                style={{ height: '100%', borderRight: 0, fontSize: '130%' }}
                                 defaultOpenKeys={['sub1']}
                                 selectedKeys={[this.state.current]}
                                 mode="inline"
