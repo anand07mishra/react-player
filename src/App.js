@@ -11,7 +11,7 @@ Amplify.configure(awsconfig);
 
 
 onAuthUIStateChange((nextAuthState, authData) => {
-  if (nextAuthState === AuthState.SignedIn) {
+  if (nextAuthState === AuthState.SignUp) {
     console.log("User Email : ", authData.attributes.email);
     API.post(apiName, '/postUserInfo', {
       body: {
