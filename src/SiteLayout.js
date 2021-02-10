@@ -1,8 +1,9 @@
 import { AppstoreAddOutlined, HomeOutlined, LayoutOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PlaySquareOutlined, SettingOutlined, SubnodeOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import { Input, Layout, Menu, Switch } from 'antd';
 import 'antd/dist/antd.css';
 import { Auth } from 'aws-amplify';
-import React from 'react';
+import React from "react";
 import {
     BrowserRouter, NavLink, Route
 } from 'react-router-dom';
@@ -19,13 +20,23 @@ const { Header, Content, Sider } = Layout;
 
 const { SubMenu } = Menu;
 
-
 class SiteLayout extends React.Component {
     state = {
         theme: 'dark',
         current: '1',
         collapsed: true,
+        authState: '',
+        user: '',
     };
+
+    componentDidMount() {
+        onAuthUIStateChange((nextAuthState, authData) => {
+            this.setState({
+                authState: nextAuthState,
+                user: authData
+            });
+        });
+    }
 
     changeTheme = value => {
         this.setState({
@@ -66,7 +77,7 @@ class SiteLayout extends React.Component {
                             <Menu.Item key="3"><NavLink to="/Movies">Movies</NavLink></Menu.Item>
                             <Menu.Item key="4"><NavLink to="/LiveChannels">Live Channels</NavLink></Menu.Item>
                             <Menu.Item key="5"><NavLink to="/WatchList">Watchlist</NavLink></Menu.Item>
-                            <Menu.Item key="6"><Search
+                            <Menu.Item key="6" style={{ marginLeft: '15%', width: '35%' }}><Search
                                 placeholder="Search"
                                 style={{ paddingTop: '12px' }}
                                 allowClear
@@ -75,15 +86,17 @@ class SiteLayout extends React.Component {
                                 onSearch={(value) => { console.log(value) }}
                             /></Menu.Item>
 
-                            <SubMenu key="SubMenu" icon={<UserOutlined style={{ fontSize: '130%' }} />}>
-                                <Menu.Item key="setting:1" icon={<SettingOutlined style={{ fontSize: '130%' }} />}>User Preferences</Menu.Item>
-                                <Menu.Item key="setting:2" icon={<LogoutOutlined style={{ fontSize: '130%' }} />} onClick={() => {
-                                    Auth.signOut()
-                                        .catch(err => console.log(err));
-                                    window.location.reload();
-                                }}>
-                                    Signout
+                            <SubMenu key="key7" style={{ marginLeft: '3%' }} icon={<UserOutlined style={{ fontSize: '130%' }} />}>
+                                <Menu.ItemGroup style={{ textTransform: 'capitalize' }} title={this.state.authState === AuthState.SignedIn && this.state.user ? 'Hello, ' + this.state.user.attributes.email : 'Hello, Guest'}>
+                                    <Menu.Item key="setting:1" icon={<SettingOutlined style={{ fontSize: '130%' }} />}>User Preferences</Menu.Item>
+                                    <Menu.Item key="setting:2" icon={<LogoutOutlined style={{ fontSize: '130%' }} />} onClick={() => {
+                                        Auth.signOut()
+                                            .catch(err => console.log(err));
+                                        window.location.reload();
+                                    }}>
+                                        Signout
                                 </Menu.Item>
+                                </Menu.ItemGroup>
                             </SubMenu>
                         </Menu>
                     </Header>
