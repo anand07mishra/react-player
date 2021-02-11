@@ -77,7 +77,7 @@ class SiteLayout extends React.Component {
                             <Menu.Item key="3"><NavLink to="/Movies">Movies</NavLink></Menu.Item>
                             <Menu.Item key="4"><NavLink to="/LiveChannels">Live Channels</NavLink></Menu.Item>
                             <Menu.Item key="5"><NavLink to="/WatchList">Watchlist</NavLink></Menu.Item>
-                            <Menu.Item key="6" style={{ marginLeft: '15%', width: '35%' }}><Search
+                            <Menu.Item key="6"><Search
                                 placeholder="Search"
                                 style={{ paddingTop: '12px' }}
                                 allowClear
@@ -86,7 +86,7 @@ class SiteLayout extends React.Component {
                                 onSearch={(value) => { console.log(value) }}
                             /></Menu.Item>
 
-                            <SubMenu key="key7" style={{ marginLeft: '3%' }} icon={<UserOutlined style={{ fontSize: '130%' }} />}>
+                            <SubMenu key="key7" icon={<UserOutlined style={{ fontSize: '130%' }} />}>
                                 <Menu.ItemGroup style={{ textTransform: 'capitalize' }} title={this.state.authState === AuthState.SignedIn && this.state.user ? 'Hello, ' + this.state.user.attributes.email : 'Hello, Guest'}>
                                     <Menu.Item key="setting:1" icon={<SettingOutlined style={{ fontSize: '130%' }} />}>User Preferences</Menu.Item>
                                     <Menu.Item key="setting:2" icon={<LogoutOutlined style={{ fontSize: '130%' }} />} onClick={() => {
