@@ -6,7 +6,7 @@ function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 //gtag('userEmail',new Date()​​);
 //gtag('config', 'G-X2JYJZ00LL');
-gtag('config', 'UA-187122323-1');
+gtag('config', 'UA-187122323-2');
 export default function Home() {
     return (
         <div>
