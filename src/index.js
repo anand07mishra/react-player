@@ -5,8 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import gatracking from './GATracking';
 
-//GA code function call 
-gatracking();
+
 
 ReactDOM.render(
   <React.StrictMode>
