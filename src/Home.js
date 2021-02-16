@@ -1,9 +1,10 @@
 import { Typography } from 'antd';
 import React from 'react';
+import gatracking from './GATracking';
+
 const { Title } = Typography;
-var imported = document.createElement('script');
-imported.src = 'https://www.googletagmanager.com/gtag/js?id=UA-187122323-2';
-document.head.appendChild(imported);
+//GA code function call 
+gatracking();
 
 
 export default function Home() {

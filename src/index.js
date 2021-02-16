@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import gatracking from './GATracking';
+
+//GA code function call 
+gatracking();
 
 ReactDOM.render(
   <React.StrictMode>
