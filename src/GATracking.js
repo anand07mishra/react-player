@@ -7,7 +7,5 @@ function gatracking() {
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-187122323-2');
-    gtag('config', 'UA-187122323-2', {
-      'user_id': authData.attributes.email
-    });
+    
 }
