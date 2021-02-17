@@ -15,7 +15,8 @@ Amplify.configure(awsconfig);
 onAuthUIStateChange((nextAuthState, authData) => {
   if (nextAuthState === AuthState.SignedIn) {
     console.log("User Email : ", authData.attributes.email);
-     
+     // GA Function calling with UserID pass
+     gatracking(authData.attributes.email);
   }
   
 
@@ -30,8 +31,7 @@ onAuthUIStateChange((nextAuthState, authData) => {
       },
     }).then((result) => {
       console.log(result);
-      // GA Function calling with UserID pass
-        gatracking(authData.attributes.email);
+      
     }).catch(err => {
       console.log(err);
     })
