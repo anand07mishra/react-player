@@ -17,8 +17,7 @@ onAuthUIStateChange((nextAuthState, authData) => {
     console.log("User Email : ", authData.attributes.email);
      
   }
-  // GA Function calling with UserID pass
-gatracking(authData.attributes.email);
+  
 
   if (nextAuthState === AuthState.SignUp) {
     API.post(apiName, '/postUserInfo', {
@@ -31,6 +30,8 @@ gatracking(authData.attributes.email);
       },
     }).then((result) => {
       console.log(result);
+      // GA Function calling with UserID pass
+        gatracking(authData.attributes.email);
     }).catch(err => {
       console.log(err);
     })
