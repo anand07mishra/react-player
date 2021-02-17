@@ -1,11 +1,12 @@
 import { Typography } from 'antd';
 import React from 'react';
-import doSomething from './GATracking';
+import gatracking from './GATracking';
 
 
 const { Title } = Typography;
 
-doSomething();
+// GA Function calling
+gatracking();
 
 export default function Home() {
     return (
