@@ -5,6 +5,8 @@ import Amplify, { API } from 'aws-amplify';
 import './App.css';
 import awsconfig from './aws-exports';
 import SiteLayout from './SiteLayout';
+import gatracking from './GATracking';
+
 
 const apiName = 'MediaUserInterfaceAPI';
 Amplify.configure(awsconfig);
@@ -13,8 +15,11 @@ Amplify.configure(awsconfig);
 onAuthUIStateChange((nextAuthState, authData) => {
   if (nextAuthState === AuthState.SignedIn) {
     console.log("User Email : ", authData.attributes.email);
-    
+     
   }
+  // GA Function calling with UserID pass
+gatracking(authData.attributes.email);
+
   if (nextAuthState === AuthState.SignUp) {
     API.post(apiName, '/postUserInfo', {
       body: {
